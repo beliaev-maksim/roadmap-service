@@ -31,7 +31,25 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+The following gates are derived from the repository Constitution and MUST be
+addressed in the plan (attach artifacts or TODOs if not yet available):
+
+- API Contract: A versioned contract (OpenAPI, gRPC proto, or contract doc)
+  MUST be attached or referenced for any public API changes. If the work is
+  internal-only, state that explicitly and justify.  
+- Test Coverage: Provide test-first artifacts: unit/contract/acceptance tests
+  (or failing test definitions) covering the feature's public behaviour.  
+- Observability: List required metrics, logs, and tracing spans the feature
+  will add. Include health/readiness probe changes if applicable.  
+- Versioning Impact: Declare whether the change affects public contracts and
+  specify the expected semver bump (MAJOR/MINOR/PATCH) and migration plan if
+  incompatible.  
+- Security: Note any security or privilege changes and attach a short threat
+  model or approval note if the change expands attack surface or requires
+  elevated access.
+
+Use this section to call out any TODOs where artifacts are pending; every
+open TODO should be paired with an owner and ETA.
 
 ## Project Structure
 
