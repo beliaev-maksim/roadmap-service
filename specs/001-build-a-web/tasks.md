@@ -75,13 +75,13 @@
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T034 [P] Add error handling for Jira API downtime (show cached data)
-- [ ] T035 [P] Add admin view for roadmap management in frontend/src/pages/admin/
-- [ ] T036 [P] Add role-based access control for admin/user views
-- [ ] T037 [P] Add edge case handling for missing fields, label format, color rule precedence
-- [ ] T038 [P] Add documentation for setup, filtering, color logic, and API
-- [ ] T039 [P] Performance optimization for roadmap queries and frontend rendering
-- [ ] T040 [P] Final code cleanup and refactoring
+- [x] T034 [P] Add error handling for Jira API downtime (show cached data)
+- [x] T035 [P] Add admin view for roadmap management in frontend/src/pages/admin/
+- [x] T036 [P] Add role-based access control for admin/user views
+- [x] T037 [P] Add edge case handling for missing fields, label format, color rule precedence
+- [x] T038 [P] Add documentation for setup, filtering, color logic, and API
+- [x] T039 [P] Performance optimization for roadmap queries and frontend rendering
+- [x] T040 [P] Final code cleanup and refactoring
 
 ---
 
