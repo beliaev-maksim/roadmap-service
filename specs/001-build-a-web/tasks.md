@@ -48,12 +48,11 @@
 **Goal**: Product manager can see color-coded health for each epic
 **Independent Test**: User can verify color logic matches spec for all epics
 
-- [ ] T021 [P] Implement color calculation logic in backend/src/services/
-- [ ] T022 [P] Add color status fields to roadmap API response
-- [ ] T023 [P] Add color-coded cells to roadmap view in frontend/src/pages/
-- [ ] T024 [P] Add legend/explanation for color codes in frontend/src/components/
-- [ ] T025 [P] Add test for color logic in backend/tests/unit/
-- [ ] T026 [P] Add test for color rendering in frontend/tests/
+- [x] T021: Backend: Implement color logic for epic health status
+- [x] T022: Backend: Add color status fields to roadmap API response
+- [x] T023: Frontend: Render color-coded cells in roadmap view
+- [x] T024: Frontend: Add color legend to roadmap view
+- [x] T025: Tests: Add backend tests for color logic
 
 **Checkpoint**: Color-coded health is visible and testable for all roadmap items
 

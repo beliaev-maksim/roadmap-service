@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DepartmentTeamFilter from '../components/DepartmentTeamFilter';
+import ColorLegend from '../components/ColorLegend';
 import { fetchRoadmap } from '../services/roadmapApi';
 
 export default function RoadmapView() {
@@ -21,9 +22,17 @@ export default function RoadmapView() {
         onDepartmentChange={setDepartment}
         onTeamChange={setTeam}
       />
+      <ColorLegend />
       <ul>
         {items.map(item => (
-          <li key={item.id}>{item.name} ({item.department}/{item.team})</li>
+          <li key={item.id}>
+            <span style={{color: item.color_status.carry_over?.color}}>
+              {item.color_status.carry_over ? `Carry-over (${item.color_status.carry_over.count}) ` : ''}
+            </span>
+            <span style={{color: item.color_status.health.color}}>
+              {item.name} ({item.department}/{item.team}) {item.color_status.health.label || ''}
+            </span>
+          </li>
         ))}
       </ul>
     </div>
