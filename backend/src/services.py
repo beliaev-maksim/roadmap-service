@@ -24,3 +24,11 @@ def calculate_epic_color(epic):
     if status in ('In Progress', 'In Review', 'To Be Deployed', 'BLOCKED'):
         return {'carry_over': carry_over, 'health': {'color': 'green'}}
     return {'carry_over': carry_over, 'health': {'color': 'white'}}
+
+def filter_roadmap_by_product_release(items, product=None, release=None):
+    filtered = items
+    if product:
+        filtered = [i for i in filtered if i.get('product') == product]
+    if release:
+        filtered = [i for i in filtered if release in i.get('labels', [])]
+    return filtered

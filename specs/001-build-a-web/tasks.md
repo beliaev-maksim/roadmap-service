@@ -63,13 +63,11 @@
 **Goal**: Engineering manager can filter roadmap by product and release cycle
 **Independent Test**: User can select product/release cycle and see correct items
 
-- [ ] T027 [P] Implement Product and ReleaseCycle models in backend/src/models/
-- [ ] T028 [P] Implement product/release cycle filtering logic in backend/src/services/
-- [ ] T029 [P] Add product/release cycle filter UI components in frontend/src/components/
-- [ ] T030 [P] Add product/release cycle filter API integration in frontend/src/services/
-- [ ] T031 [P] Add product/release cycle filter to roadmap view in frontend/src/pages/
-- [ ] T032 [P] Add test for product/release cycle filtering in backend/tests/integration/
-- [ ] T033 [P] Add test for product/release cycle filtering in frontend/tests/
+- [x] T026: Backend: Implement product/release cycle filtering logic
+- [x] T027: Backend: Add product/release filter support to roadmap API
+- [x] T028: Frontend: Add product/release filter UI
+- [x] T029: Frontend: Integrate filter logic in roadmap view
+- [x] T030: Tests: Add backend tests for product/release filtering
 
 **Checkpoint**: Roadmap can be filtered by product/release cycle and is independently testable
 
