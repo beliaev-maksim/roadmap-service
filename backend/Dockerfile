@@ -10,4 +10,5 @@ RUN poetry config virtualenvs.create false && poetry install --no-root --no-inte
 # Copy source code
 COPY ./src /app/src
 COPY ./tests /app/tests
+ENV PYTHONPATH=/app
 CMD ["uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000"]
