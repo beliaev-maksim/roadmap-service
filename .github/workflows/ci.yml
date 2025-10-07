@@ -13,7 +13,7 @@ jobs:
       - name: Build backend Docker image
         run: docker build -t roadmap-backend ./backend
       - name: Run backend tests
-        run: docker run --rm roadmap-backend pytest
+        run: docker run --rm roadmap-backend pytest tests/ --import-mode=importlib
   build-test-frontend:
     runs-on: ubuntu-latest
     steps:
