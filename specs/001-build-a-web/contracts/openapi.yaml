@@ -1,0 +1,117 @@
+openapi: 3.0.3
+info:
+  title: Jira Roadmap Visualization API
+  version: 0.1.0
+paths:
+  /roadmap:
+    get:
+      summary: Get roadmap items
+      parameters:
+        - in: query
+          name: department
+          schema:
+            type: string
+        - in: query
+          name: team
+          schema:
+            type: string
+        - in: query
+          name: product
+          schema:
+            type: string
+        - in: query
+          name: release_cycle
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of roadmap items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoadmapItem'
+  /products:
+    get:
+      summary: Get all products
+      responses:
+        '200':
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /departments:
+    get:
+      summary: Get all departments
+      responses:
+        '200':
+          description: List of departments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Department'
+components:
+  schemas:
+    RoadmapItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        roadmap_state:
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        parent:
+          type: string
+        components:
+          type: array
+          items:
+            type: string
+        department:
+          type: string
+        team:
+          type: string
+        product:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+        primary_project:
+          type: string
+        secondary_projects:
+          type: array
+          items:
+            type: string
+        component_filter:
+          type: array
+          items:
+            type: string
+    Department:
+      type: object
+      properties:
+        name:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
