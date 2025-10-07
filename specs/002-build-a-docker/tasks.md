@@ -1,35 +1,35 @@
 # Tasks: Build Docker Image & GitHub CI for Automated and Manual QA
 
 ## Phase 1: Setup Tasks
-- T001: Create initial Dockerfile for backend [backend/Dockerfile]
-- T002: Create initial Dockerfile for frontend [frontend/Dockerfile]
-- T003: Set up basic GitHub Actions workflow file [/.github/workflows/ci.yml]
-- T004: Document environment variable usage for CI and local runs [specs/002-build-a-docker/quickstart.md]
+- [X] T001: Create initial Dockerfile for backend [backend/Dockerfile]
+- [X] T002: Create initial Dockerfile for frontend [frontend/Dockerfile]
+- [X] T003: Set up basic GitHub Actions workflow file [/.github/workflows/ci.yml]
+- [X] T004: Document environment variable usage for CI and local runs [specs/002-build-a-docker/quickstart.md]
 
 ## Phase 2: Foundational Tasks
-- T005: Ensure backend and frontend test suites are runnable in CI [backend/tests/, frontend/tests/]
-- T006: Add .env.example files for backend and frontend [backend/.env.example, frontend/.env.example]
+- [X] T005: Ensure backend and frontend test suites are runnable in CI [backend/tests/, frontend/tests/]
+- [X] T006: Add .env.example files for backend and frontend [backend/.env.example, frontend/.env.example]
 
 ## Phase 3: User Story 1 - Automated CI Build and Test (Priority: P1)
-- T007: Implement backend Docker build and test steps in CI workflow [/.github/workflows/ci.yml]
-- T008: Implement frontend Docker build and test steps in CI workflow [/.github/workflows/ci.yml]
-- T009: Add CI status and test result reporting to GitHub UI [/.github/workflows/ci.yml]
-- T010: Validate CI workflow by pushing a test commit [P]
-- T011: Document CI workflow and troubleshooting steps [specs/002-build-a-docker/quickstart.md]
+- [X] T007: Implement backend Docker build and test steps in CI workflow [/.github/workflows/ci.yml]
+- [X] T008: Implement frontend Docker build and test steps in CI workflow [/.github/workflows/ci.yml]
+- [X] T009: Add CI status and test result reporting to GitHub UI [/.github/workflows/ci.yml]
+- [X] T010: Validate CI workflow by pushing a test commit [P]
+- [X] T011: Document CI workflow and troubleshooting steps [specs/002-build-a-docker/quickstart.md]
 
 ## Phase 4: User Story 2 - Manual QA via Local Docker Run (Priority: P2)
-- T012: Write step-by-step instructions for running backend Docker image locally [specs/002-build-a-docker/quickstart.md]
-- T013: Write step-by-step instructions for running frontend Docker image locally [specs/002-build-a-docker/quickstart.md]
-- T014: Validate manual QA instructions by running both images locally [P]
+- [X] T012: Write step-by-step instructions for running backend Docker image locally [specs/002-build-a-docker/quickstart.md]
+- [X] T013: Write step-by-step instructions for running frontend Docker image locally [specs/002-build-a-docker/quickstart.md]
+- [X] T014: Validate manual QA instructions by running both images locally [P]
 
 ## Phase 5: User Story 3 - Clear Documentation for QA and Developers (Priority: P3)
-- T015: Consolidate all Docker/CI/QA documentation for onboarding [specs/002-build-a-docker/quickstart.md]
-- T016: Review documentation with a new team member for usability [P]
+- [X] T015: Consolidate all Docker/CI/QA documentation for onboarding [specs/002-build-a-docker/quickstart.md]
+- [X] T016: Review documentation with a new team member for usability [P]
 
 ## Final Phase: Polish & Cross-Cutting Concerns
-- T017: Ensure no sensitive data is present in Docker images or CI logs [backend/Dockerfile, frontend/Dockerfile, /.github/workflows/ci.yml]
-- T018: Optimize Docker images for size and build speed [backend/Dockerfile, frontend/Dockerfile]
-- T019: Final review and update of environment variable documentation [specs/002-build-a-docker/quickstart.md]
+- [X] T017: Ensure no sensitive data is present in Docker images or CI logs [backend/Dockerfile, frontend/Dockerfile, /.github/workflows/ci.yml]
+- [X] T018: Optimize Docker images for size and build speed [backend/Dockerfile, frontend/Dockerfile]
+- [X] T019: Final review and update of environment variable documentation [specs/002-build-a-docker/quickstart.md]
 
 ## Dependencies
 - User Story 1 (P1) must be completed before User Story 2 (P2) and User Story 3 (P3)
