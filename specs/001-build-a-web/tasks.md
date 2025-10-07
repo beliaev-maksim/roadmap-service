@@ -5,24 +5,24 @@
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-- [ ] T001 Create backend project structure: `backend/src/`, `backend/tests/`
-- [ ] T002 Create frontend project structure: `frontend/src/`, `frontend/tests/`
-- [ ] T003 Initialize FastAPI backend with minimal dependencies
-- [ ] T004 Initialize React frontend with Material UI
-- [ ] T005 Set up PostgreSQL database and configure connection
-- [ ] T006 [P] Configure linting and formatting tools for backend and frontend
-- [ ] T007 [P] Add environment variable management for secrets/config
+- [x] T001 Create backend project structure: `backend/src/`, `backend/tests/`
+- [x] T002 Create frontend project structure: `frontend/src/`, `frontend/tests/`
+- [x] T003 Initialize FastAPI backend with minimal dependencies
+- [x] T004 Initialize React frontend with Material UI
+- [x] T005 Set up PostgreSQL database and configure connection
+- [x] T006 [P] Configure linting and formatting tools for backend and frontend
+- [x] T007 [P] Add environment variable management for secrets/config
 
 ---
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
-- [ ] T008 Design and apply database schema for roadmap items, products, departments, teams, objectives, release cycles
-- [ ] T009 [P] Implement periodic Jira sync job to populate database
-- [ ] T010 [P] Implement base API endpoints for roadmap, products, departments
-- [ ] T011 [P] Implement base React routing and role-based access (user/admin views)
-- [ ] T012 Configure Prometheus metrics endpoint in backend
-- [ ] T013 Set up structured logging in backend (JSON format)
+- [x] T008 Design and apply database schema for roadmap items, products, departments, teams, objectives, release cycles
+- [x] T009 [P] Implement periodic Jira sync job to populate database
+- [x] T010 [P] Implement base API endpoints for roadmap, products, departments
+- [x] T011 [P] Implement base React routing and role-based access (user/admin views)
+- [x] T012 Configure Prometheus metrics endpoint in backend
+- [x] T013 Set up structured logging in backend (JSON format)
 
 ---
 
