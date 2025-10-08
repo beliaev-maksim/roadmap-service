@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import DepartmentTeamFilter from '../src/components/DepartmentTeamFilter';
+import DepartmentTeamFilter from '../../components/DepartmentTeamFilter';
 
 test('DepartmentTeamFilter renders and changes', () => {
   const departments = ['Engineering', 'Product'];

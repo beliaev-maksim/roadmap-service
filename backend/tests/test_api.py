@@ -1,5 +1,14 @@
+from fastapi.testclient import TestClient
+
+from src.api import app
+
+client = TestClient(app)
+
+
 def test_get_roadmap():
-    assert True  # Placeholder for API test
+    resp = client.get("/roadmap")
+    assert resp.status_code == 200
+    assert "items" in resp.json()
 
 
 def test_filter_by_product():
