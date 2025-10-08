@@ -16,7 +16,7 @@ export default function RoadmapView() {
   const releases = Array.from(new Set(items.flatMap(i => i.labels)));
 
   useEffect(() => {
-    fetchRoadmap({ department, team }).then(setItems);
+    fetchRoadmap({ department, team }).then(res => setItems(res.items || []));
   }, [department, team]);
 
   return (
