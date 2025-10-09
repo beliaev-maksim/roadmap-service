@@ -12,8 +12,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Check for docs update confirmation
-        run: |
-          if ! grep -q -r "\[x\] I have updated the architecture documentation" .github/PULL_REQUEST_TEMPLATE.md; then
-            echo "Please confirm that you have updated the architecture documentation in the PR description."
-            exit 1
-          fi
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const body = context.payload.pull_request.body;
+            if (!/\[x\] I have updated the architecture documentation/.test(body)) {
+              core.setFailed("Please confirm that you have updated the architecture documentation by checking the box in the PR description.");
+            }
+          github-token: ${{secrets.GITHUB_TOKEN}}
