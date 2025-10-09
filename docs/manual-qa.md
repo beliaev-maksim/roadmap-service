@@ -1,11 +1,10 @@
-# Quickstart: Jira Integration
+# Manual QA: Jira Integration
 
-This guide provides instructions on how to set up and run the Jira integration feature.
+This document provides instructions on how to perform manual quality assurance for the Jira integration feature.
 
 ## Prerequisites
 
 - Docker and Docker Compose
-- Python 3.11
 - A Jira instance with a project containing some Epics.
 - A Jira personal access token (PAT).
 
@@ -32,13 +31,26 @@ This guide provides instructions on how to set up and run the Jira integration f
     ```bash
     docker-compose up --build
     ```
+    **Note**: The first time you run this command, it will automatically create the necessary database tables based on the `backend/src/db_schema.sql` file.
 
-## Usage
+## Manual Verification Steps
 
 1.  **Trigger a Jira sync**:
-    - The application will automatically sync with Jira every 5 minutes.
-    - To trigger a manual sync, you can send a POST request to the `/api/sync` endpoint.
+    - Open a terminal and run the following command to trigger a manual sync:
+      ```bash
+      curl -X POST http://localhost:8000/api/sync
+      ```
+    - You should see the following response:
+      ```json
+      {"message":"Jira sync started in the background."}
+      ```
 
 2.  **View the roadmap**:
     - Open your browser and navigate to `http://localhost:3000`.
     - You should see the roadmap items fetched from your Jira project.
+
+3.  **Verify data updates**:
+    - In your Jira project, update an Epic (e.g., change its status or summary).
+    - Trigger another manual sync using the `curl` command from step 1.
+    - Refresh the roadmap page in your browser.
+    - You should see the updated information reflected in the roadmap.
