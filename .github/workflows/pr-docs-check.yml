@@ -1,0 +1,19 @@
+name: "Docs Check"
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check for docs update confirmation
+        run: |
+          if ! grep -q -r "\[x\] I have updated the architecture documentation" .github/PULL_REQUEST_TEMPLATE.md; then
+            echo "Please confirm that you have updated the architecture documentation in the PR description."
+            exit 1
+          fi
