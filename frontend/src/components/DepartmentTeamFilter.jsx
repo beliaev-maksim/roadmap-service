@@ -4,12 +4,12 @@ export default function DepartmentTeamFilter({ departments, teams, onDepartmentC
   return (
     <div>
       <label htmlFor="department-filter">Department:</label>
-      <select id="department-filter" onChange={e => onDepartmentChange(e.target.value)}>
+      <select id="department-filter" onChange={e => onDepartmentChange(e.target.value)} aria-label="Department">
         <option value="">All</option>
         {departments.map(dep => <option key={dep} value={dep}>{dep}</option>)}
       </select>
       <label htmlFor="team-filter">Team:</label>
-      <select id="team-filter" onChange={e => onTeamChange(e.target.value)}>
+      <select id="team-filter" onChange={e => onTeamChange(e.target.value)} aria-label="Team">
         <option value="">All</option>
         {teams.map(team => <option key={team} value={team}>{team}</option>)}
       </select>
