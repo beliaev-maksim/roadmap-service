@@ -15,5 +15,6 @@ C4Component
     }
 
     Rel(pages, components, "Uses")
-    Rel(pages, api_service, "Uses")
+    Rel(pages, api_service, "Fetches data from")
+    Rel(api_service, components, "Sends data to")
 ```
