@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: Roadmap Service API
+  version: 1.1.0
+paths:
+  /api/roadmap:
+    get:
+      summary: Get all roadmap items
+      responses:
+        '200':
+          description: A list of roadmap items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoadmapItem'
+components:
+  schemas:
+    RoadmapItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        jira_key:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        release:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
