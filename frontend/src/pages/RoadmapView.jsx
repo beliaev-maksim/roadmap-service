@@ -16,8 +16,9 @@ export default function RoadmapView() {
   const [syncStatus, setSyncStatus] = useState(null);
   const departments = ['Engineering', 'Product']; // TODO: fetch from API
   const teams = ['Team A', 'Team B']; // TODO: fetch from API
-  const products = Array.from(new Set(items.map(i => i.product).filter(Boolean)));
-  const releases = Array.from(new Set(items.flatMap(i => i.labels)));
+  // The 'product' field is not available in the new API response, so this is disabled.
+  const products = []; 
+  const releases = Array.from(new Set(items.flatMap(i => i.tags || [])));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +29,7 @@ export default function RoadmapView() {
         if (status.status === 'success' || status.status === 'idle') {
           // Only fetch data if the sync is done or was already done
           const data = await getRoadmapData();
-          setItems(data);
+          setItems(data || []); // Ensure data is always an array
           setLoading(false);
         } else if (status.status === 'syncing' || status.status === 'processing') {
           // If syncing, poll for status updates every 5 seconds
@@ -46,6 +47,10 @@ export default function RoadmapView() {
     fetchData();
   }, []);
 
+  const filteredItems = items
+    .filter(item => !selectedProduct || item.product === selectedProduct)
+    .filter(item => !selectedRelease || (item.tags && item.tags.includes(selectedRelease)));
+
   const groupItemsByProduct = (items) => {
     const grouped = items.reduce((acc, item) => {
       const product = item.product || 'Uncategorized';
@@ -58,10 +63,10 @@ export default function RoadmapView() {
       }
       acc[product].items.push({
         id: item.id,
-        carryOverStatus: item.color_status.carry_over ? `Carry-over (${item.color_status.carry_over.count})` : '',
-        roadmapStatus: item.color_status.health.label || '',
-        name: item.name,
-        jiraLink: item.url,
+        carryOverStatus: item.color_status?.carry_over ? `Carry-over (${item.color_status.carry_over.count})` : '',
+        roadmapStatus: item.color_status?.health?.label || '',
+        name: item.title,
+        jiraLink: `https://your-jira-instance.atlassian.net/browse/${item.jira_key}`, // Assuming a Jira URL structure
         colorStatus: item.color_status,
       });
       return acc;
@@ -69,15 +74,12 @@ export default function RoadmapView() {
     return Object.values(grouped);
   };
 
-  const filteredItems = items
-    .filter(item => !selectedProduct || item.product === selectedProduct)
-    .filter(item => !selectedRelease || item.labels.includes(selectedRelease));
-
   const roadmapData = groupItemsByProduct(filteredItems);
 
   const visibleColumns = {
-    carryOver: roadmapData.some(p => p.items.some(i => i.carryOverStatus)),
-    roadmapStatus: roadmapData.some(p => p.items.some(i => i.roadmapStatus)),
+    // These columns are no longer available in the data.
+    carryOver: true,
+    roadmapStatus: true,
     itemName: true, // Always show item name
   };
 

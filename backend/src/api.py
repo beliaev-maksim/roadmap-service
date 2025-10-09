@@ -60,7 +60,7 @@ def get_status():
 def get_roadmap():
     with get_db_connection() as conn:
         with conn.cursor() as cur:
-            cur.execute("SELECT id, jira_key, title, description, status, release, tags FROM roadmap_item")
+            cur.execute("SELECT id, jira_key, title, description, status, release, tags, product, color_status, url FROM roadmap_item")
             rows = cur.fetchall()
             return [
                 {
@@ -71,6 +71,9 @@ def get_roadmap():
                     "status": row[4],
                     "release": row[5],
                     "tags": row[6],
+                    "product": row[7],
+                    "color_status": row[8],
+                    "url": row[9],
                 }
                 for row in rows
             ]

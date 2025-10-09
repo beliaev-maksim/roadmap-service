@@ -26,6 +26,13 @@ CREATE TABLE team (
     department VARCHAR REFERENCES department(name)
 );
 
+CREATE TABLE product (
+    name VARCHAR PRIMARY KEY,
+    primary_project VARCHAR NOT NULL,
+    secondary_projects TEXT[],
+    component_filter TEXT[]
+);
+
 CREATE TABLE roadmap_item (
     id SERIAL PRIMARY KEY,
     jira_key VARCHAR(255) NOT NULL UNIQUE,
@@ -34,15 +41,11 @@ CREATE TABLE roadmap_item (
     status VARCHAR(255) NOT NULL,
     release VARCHAR(255),
     tags TEXT[],
+    product VARCHAR(255) REFERENCES product(name),
+    color_status JSONB,
+    url TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE product (
-    name VARCHAR PRIMARY KEY,
-    primary_project VARCHAR NOT NULL,
-    secondary_projects TEXT[],
-    component_filter TEXT[]
 );
 
 CREATE TABLE release_cycle (
@@ -57,3 +60,8 @@ CREATE TABLE objective (
     description TEXT,
     url TEXT
 );
+
+-- Seed data for products to allow mapping from Jira projects
+INSERT INTO product (name, primary_project) VALUES ('Juju', 'JUJU') ON CONFLICT (name) DO NOTHING;
+INSERT INTO product (name, primary_project) VALUES ('Ubuntu', 'UBUNTU') ON CONFLICT (name) DO NOTHING;
+INSERT INTO product (name, primary_project) VALUES ('Uncategorized', 'NONE') ON CONFLICT (name) DO NOTHING;
