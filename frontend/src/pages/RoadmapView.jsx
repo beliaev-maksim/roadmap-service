@@ -4,6 +4,7 @@ import ProductReleaseFilter from '../components/ProductReleaseFilter';
 import ColorLegend from '../components/ColorLegend';
 import RoadmapTable from '../components/RoadmapTable';
 import { getRoadmapData, getSyncStatus } from '../services/roadmapApi';
+import { Box } from '@mui/material';
 
 export default function RoadmapView() {
   const [department, setDepartment] = useState('');
@@ -114,11 +115,13 @@ export default function RoadmapView() {
         onReleaseChange={setSelectedRelease}
       />
       <ColorLegend />
-      {roadmapData.map((product) => (
-        <div key={product.id} data-testid={`product-section-${product.name}`}>
-          <RoadmapTable data={[product]} visibleColumns={visibleColumns} />
-        </div>
-      ))}
+      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'flex-start' }}>
+        {roadmapData.map((product) => (
+          <div key={product.id} data-testid={`product-section-${product.name}`}>
+            <RoadmapTable data={[product]} visibleColumns={visibleColumns} />
+          </div>
+        ))}
+      </Box>
     </div>
   );
 }
