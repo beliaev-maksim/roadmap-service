@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import RoadmapView from '../pages/RoadmapView';
 import { getRoadmapData, getSyncStatus } from '../services/roadmapApi';
 
@@ -29,7 +30,7 @@ const mockRoadmapData = [
     status: 'To Do',
     release: 'R1',
     tags: ['R1'],
-    product: 'Product A',
+    product: 'Product B',
     color_status: {
       carry_over: null,
       health: { color: 'orange', label: 'At Risk' },
@@ -40,6 +41,7 @@ const mockRoadmapData = [
 
 describe('RoadmapView', () => {
   beforeEach(() => {
+    // Reset mocks before each test to ensure a clean state
     jest.clearAllMocks();
   });
 
@@ -57,5 +59,27 @@ describe('RoadmapView', () => {
     getSyncStatus.mockRejectedValue(new Error('API Error'));
     render(<RoadmapView />);
     expect(await screen.findByText(/Error: An error occurred/i)).toBeInTheDocument();
+  });
+
+  it('should filter the roadmap data when a product is selected', async () => {
+    const user = userEvent.setup();
+    // GIVEN: Mocks are defined before rendering
+    getSyncStatus.mockResolvedValue({ status: 'success' });
+    getRoadmapData.mockResolvedValue(mockRoadmapData);
+
+    // WHEN: The component is rendered
+    render(<RoadmapView />);
+
+    // THEN: Wait for the product sections to be visible
+    expect(await screen.findByTestId('product-section-Product A')).toBeVisible();
+    expect(await screen.findByTestId('product-section-Product B')).toBeVisible();
+
+    // Find the product filter and select an option
+    const productFilter = screen.getByLabelText('Product');
+    await user.selectOptions(productFilter, 'Product A');
+
+    // Assert that the view has been filtered correctly
+    expect(screen.getByTestId('product-section-Product A')).toBeVisible();
+    expect(screen.queryByTestId('product-section-Product B')).not.toBeInTheDocument();
   });
 });

@@ -63,5 +63,6 @@ CREATE TABLE objective (
 
 -- Seed data for products to allow mapping from Jira projects
 INSERT INTO product (name, primary_project) VALUES ('Juju', 'JUJU') ON CONFLICT (name) DO NOTHING;
+INSERT INTO product (name, primary_project) VALUES ('Kubernetes', 'KU') ON CONFLICT (name) DO NOTHING;
 INSERT INTO product (name, primary_project) VALUES ('Ubuntu', 'UBUNTU') ON CONFLICT (name) DO NOTHING;
 INSERT INTO product (name, primary_project) VALUES ('Uncategorized', 'NONE') ON CONFLICT (name) DO NOTHING;

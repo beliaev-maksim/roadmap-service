@@ -11,14 +11,13 @@ export default function RoadmapView() {
   const [selectedProduct, setSelectedProduct] = React.useState('');
   const [selectedRelease, setSelectedRelease] = React.useState('');
   const [items, setItems] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [releases, setReleases] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [syncStatus, setSyncStatus] = useState(null);
   const departments = ['Engineering', 'Product']; // TODO: fetch from API
   const teams = ['Team A', 'Team B']; // TODO: fetch from API
-  // The 'product' field is not available in the new API response, so this is disabled.
-  const products = []; 
-  const releases = Array.from(new Set(items.flatMap(i => i.tags || [])));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +29,13 @@ export default function RoadmapView() {
           // Only fetch data if the sync is done or was already done
           const data = await getRoadmapData();
           setItems(data || []); // Ensure data is always an array
+          
+          // Explicitly set products and releases after data is fetched
+          if (data) {
+            setProducts(Array.from(new Set(data.map(i => i.product).filter(Boolean))));
+            setReleases(Array.from(new Set(data.flatMap(i => i.tags || []))));
+          }
+
           setLoading(false);
         } else if (status.status === 'syncing' || status.status === 'processing') {
           // If syncing, poll for status updates every 5 seconds
@@ -47,10 +53,6 @@ export default function RoadmapView() {
     fetchData();
   }, []);
 
-  const filteredItems = items
-    .filter(item => !selectedProduct || item.product === selectedProduct)
-    .filter(item => !selectedRelease || (item.tags && item.tags.includes(selectedRelease)));
-
   const groupItemsByProduct = (items) => {
     const grouped = items.reduce((acc, item) => {
       const product = item.product || 'Uncategorized';
@@ -66,13 +68,17 @@ export default function RoadmapView() {
         carryOverStatus: item.color_status?.carry_over ? `Carry-over (${item.color_status.carry_over.count})` : '',
         roadmapStatus: item.color_status?.health?.label || '',
         name: item.title,
-        jiraLink: `https://your-jira-instance.atlassian.net/browse/${item.jira_key}`, // Assuming a Jira URL structure
+        jiraLink: item.url,
         colorStatus: item.color_status,
       });
       return acc;
     }, {});
     return Object.values(grouped);
   };
+
+  const filteredItems = items
+    .filter(item => !selectedProduct || item.product === selectedProduct)
+    .filter(item => !selectedRelease || (item.tags && item.tags.includes(selectedRelease)));
 
   const roadmapData = groupItemsByProduct(filteredItems);
 
@@ -108,7 +114,11 @@ export default function RoadmapView() {
         onReleaseChange={setSelectedRelease}
       />
       <ColorLegend />
-      <RoadmapTable data={roadmapData} visibleColumns={visibleColumns} />
+      {roadmapData.map((product) => (
+        <div key={product.id} data-testid={`product-section-${product.name}`}>
+          <RoadmapTable data={[product]} visibleColumns={visibleColumns} />
+        </div>
+      ))}
     </div>
   );
 }

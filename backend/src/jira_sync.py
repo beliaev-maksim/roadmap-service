@@ -28,7 +28,7 @@ def sync_jira_data():
     Fetches data from Jira and stores the raw JSON in the jira_issue_raw table.
     """
     jira = JIRA(server=JIRA_URL, basic_auth=(JIRA_USERNAME, JIRA_PAT))
-    issues = jira.search_issues(JQL_QUERY, maxResults=50) # Fetch all issues
+    issues = jira.search_issues(JQL_QUERY, maxResults=False) # Fetch all issues
 
     with get_db_connection() as conn:
         with conn.cursor() as cur:
