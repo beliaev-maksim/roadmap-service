@@ -19,3 +19,10 @@ C4Context
     Rel(product_manager, roadmap_service, "Uses")
     Rel(roadmap_service, jira, "Reads roadmap data from")
 ```
+
+## External Systems
+
+The Roadmap Service interacts with the following external systems:
+
+- **Jira**: The primary source of truth for all roadmap items. The service periodically fetches data from the Jira API to populate its local database.
+- **Web Browser**: Used by end-users (Product Managers, Engineers, etc.) to view the roadmap visualization.
