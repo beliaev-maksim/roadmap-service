@@ -20,3 +20,15 @@ C4Container
     Rel(backend, database, "Reads from and writes to", "SQL")
     Rel(backend, jira, "Reads roadmap data from", "HTTPS")
 ```
+
+## Containers
+
+- **Frontend**: A React-based single-page application that provides the user interface for the roadmap visualization.
+- **Backend**: A FastAPI-based API that serves roadmap data to the frontend.
+- **Database**: A PostgreSQL database that stores both the raw data from Jira and the processed data for the frontend.
+
+## Relationships
+
+- The **Frontend** communicates with the **Backend** via a REST API.
+- The **Backend** fetches data from **Jira** and stores it in the **Database**.
+- The **Backend** reads processed data from the **Database** to serve to the **Frontend**.

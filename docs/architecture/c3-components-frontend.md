@@ -18,3 +18,11 @@ C4Component
     Rel(pages, api_service, "Fetches data from")
     Rel(api_service, components, "Sends data to")
 ```
+
+## Components
+
+The Frontend container is composed of the following key components:
+
+- **RoadmapView**: The main page that displays the roadmap. It is responsible for fetching data from the API and rendering the `RoadmapTable`. It also polls the `/api/status` endpoint to provide feedback to the user during the data synchronization process.
+- **RoadmapTable**: A component that renders the roadmap data in a table format.
+- **Filter Components**: A set of components that allow the user to filter the roadmap data.

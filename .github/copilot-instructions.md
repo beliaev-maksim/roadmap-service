@@ -18,6 +18,7 @@ cd src [ONLY COMMANDS FOR ACTIVE TECHNOLOGIES][ONLY COMMANDS FOR ACTIVE TECHNOLO
 Python 3.11 (FastAPI backend), JavaScript/TypeScript (frontend, framework TBD): Follow standard conventions
 
 ## Recent Changes
+- 005-build-the-actual: Added [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
 - 001-build-a-web: Added Python 3.11 (FastAPI backend), JavaScript/TypeScript (frontend, framework TBD) + FastAPI, requests/httpx, minimal frontend framework (React or Vue recommended)
 
 <!-- MANUAL ADDITIONS START -->
