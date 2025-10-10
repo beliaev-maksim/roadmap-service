@@ -11,7 +11,10 @@ def test_calculate_epic_color_done():
 def test_calculate_epic_color_at_risk():
     """Test that 'At Risk' state returns the correct color."""
     # Assuming 'roadmap_state' is a custom field. Using a placeholder ID.
-    issue_fields = {'customfield_12345': 'At Risk'}
+    issue_fields = {
+        'customfield_10968': {'value': 'At Risk'},
+        'status': {'name': 'In Progress'} # Provide a status to make the test more realistic
+    }
     result = calculate_epic_color(issue_fields)
     assert result['health']['color'] == 'orange'
 

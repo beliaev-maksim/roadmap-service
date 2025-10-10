@@ -56,7 +56,7 @@ def calculate_epic_color(issue_fields):
     labels = issue_fields.get('labels', []) or []
     status = issue_fields.get('status', {}).get('name', '')
     # Assuming 'roadmap_state' is a custom field. Adjust if necessary.
-    state = issue_fields.get('customfield_10968', '')
+    state = issue_fields.get('customfield_10968', {}).get('value') if issue_fields.get('customfield_10968') else None
 
     carry_over = None
     if isinstance(labels, list) and len(labels) > 1:
@@ -69,10 +69,10 @@ def calculate_epic_color(issue_fields):
         'Dropped': 'black',
     }
 
-    if status == 'Done':
-        return {'carry_over': carry_over, 'health': {'color': 'green', 'label': 'C'}}
     if state:
         return {'carry_over': carry_over, 'health': {'color': color_map.get(state, 'white')}}
+    if status == 'Done':
+        return {'carry_over': carry_over, 'health': {'color': 'green', 'label': 'C'}}
     if status == 'Rejected':
         return {'carry_over': carry_over, 'health': {'color': 'red'}}
     if status in ('In Progress', 'In Review', 'To Be Deployed', 'BLOCKED'):
