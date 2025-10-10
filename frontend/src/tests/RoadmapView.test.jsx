@@ -82,4 +82,25 @@ describe('RoadmapView', () => {
     expect(screen.getByTestId('product-section-Product A')).toBeVisible();
     expect(screen.queryByTestId('product-section-Product B')).not.toBeInTheDocument();
   });
+
+  it('should render product tables within a single container for side-by-side layout', async () => {
+    // GIVEN
+    getSyncStatus.mockResolvedValue({ status: 'success' });
+    getRoadmapData.mockResolvedValue(mockRoadmapData);
+
+    // WHEN
+    render(<RoadmapView />);
+
+    // THEN
+    const productA = await screen.findByTestId('product-section-Product A');
+    const productB = await screen.findByTestId('product-section-Product B');
+
+    // Assert that both product sections share the same parent element,
+    // which is the structure required for the flexbox layout to work.
+    expect(productA.parentElement).toBe(productB.parentElement);
+
+    // ALSO assert that the parent container has the correct flexbox styling.
+    // This ensures the test will fail if the CSS is changed.
+    expect(productA.parentElement).toHaveStyle('display: flex');
+  });
 });
