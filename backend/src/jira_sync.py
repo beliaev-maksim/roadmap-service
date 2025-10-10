@@ -18,15 +18,15 @@ def fetch_jira_data():
         logging.error(f"Jira API error: {e}. Using cached data.")
         return fetch_from_cache()
 
-JIRA_URL = os.environ['JIRA_URL']
-JIRA_USERNAME = os.environ['JIRA_USERNAME']
-JIRA_PAT = os.environ['JIRA_PAT']
-JQL_QUERY = os.environ['JQL_QUERY']
-
 def sync_jira_data():
     """
     Fetches data from Jira and stores the raw JSON in the jira_issue_raw table.
     """
+    JIRA_URL = os.environ['JIRA_URL']
+    JIRA_USERNAME = os.environ['JIRA_USERNAME']
+    JIRA_PAT = os.environ['JIRA_PAT']
+    JQL_QUERY = os.environ['JQL_QUERY']
+    
     jira = JIRA(server=JIRA_URL, basic_auth=(JIRA_USERNAME, JIRA_PAT))
     issues = jira.search_issues(JQL_QUERY, maxResults=False) # Fetch all issues
 
