@@ -40,7 +40,7 @@ jobs:
       - name: Build frontend Docker image
         run: docker build -t roadmap-frontend ./frontend
       - name: Run frontend tests
-        run: docker run --rm -e CI=true roadmap-frontend npm test
+        run: docker run --rm -e CI=true roadmap-frontend sh -c "npm ci && npm test"
   report-status:
     needs: [build-test-backend, build-test-frontend]
     runs-on: ubuntu-latest
